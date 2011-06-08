@@ -47,7 +47,8 @@ public class EasyparkServerView extends FrameView {
     String fromUser;
     String statusLogDisplayText = "";
     Integer numFreeLots, numMaxLots;
-    public static String[] serverTokens;
+    public static String[] serverTokens = {"0","0","0","0","0","0","0",
+    					"0","0","0","0","0","0","0","0"};
 
     Socket clientSocket = null;
     PrintWriter socketOut = null;
