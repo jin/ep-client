@@ -112,10 +112,10 @@ public class nodeBatteryChart extends JPanel{
          * @param event the action event.
          */
         public void actionPerformed(ActionEvent event) {
-            int y = 3;
+            int y = 4;
             for (int i = 1; i <= 5; i++){
                 updateTimeSeries(i, Integer.parseInt(EasyparkServerView.serverTokens[y]));
-                y = y + 3;
+                y = y + 6;
             }
         }
     }
