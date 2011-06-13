@@ -48,7 +48,9 @@ public class EasyparkServerView extends FrameView {
     nodeBatteryChart panel;
 	nodeBatteryChart.DataGenerator chartGen;
 
-    public static String[] serverTokens = new String[31];
+    public static String[] serverTokens = new String[32];
+
+
 	String[] tableColumnTitles = {"Node ID", "Lot Status", 
 				"Raw sensor reading", "Battery level", "Last update", "PDR"};
 
@@ -88,6 +90,11 @@ public class EasyparkServerView extends FrameView {
         mainFrame.setSize(1000, 620);
         mainFrame.setResizable(false);
         mainFrame.pack();
+
+
+		for (int index = 0; index <=31; index++){
+			serverTokens[index] = "0";
+		}
         
 
         // status bar initialization - message timeout, idle icon and busy animation, etc
