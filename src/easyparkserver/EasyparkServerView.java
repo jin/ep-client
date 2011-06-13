@@ -33,8 +33,6 @@ import javax.swing.JFrame;
 
 
 
-
-
 /**
  * The application's main frame.
  */
@@ -42,16 +40,17 @@ public class EasyparkServerView extends FrameView {
 
     String SerialForwarderIPAddress;
     Integer SerialForwarderPort;
-    String fromServer;
-    String fromUser;
+
+    String fromServer, fromUser;
     String statusLogDisplayText = "";
     Integer numFreeLots, numMaxLots;
+
     nodeBatteryChart panel;
 	nodeBatteryChart.DataGenerator chartGen;
+
     public static String[] serverTokens = new String[31];
-	String[] tableColumnTitles = {
-					"Node ID", "Lot Status", "Raw sensor reading", "Battery level", "Last update", "PDR"
-			};
+	String[] tableColumnTitles = {"Node ID", "Lot Status", 
+				"Raw sensor reading", "Battery level", "Last update", "PDR"};
 
 	ImageIcon iconBatt20 = new ImageIcon(getClass().getResource
 				("/easyparkserver/resources/battery_discharging_020.png"));
@@ -68,6 +67,8 @@ public class EasyparkServerView extends FrameView {
     PrintWriter socketOut = null;
     BufferedReader socketIn = null;
 
+	Thread updateThread;
+
     JFrame mainFrame = EasyparkServerApp.getApplication().getMainFrame();
 
     public EasyparkServerView(SingleFrameApplication app) {
@@ -78,16 +79,11 @@ public class EasyparkServerView extends FrameView {
         btn_end.setEnabled(false);
         statusMessageLabel.setText("Disconnected");
         carparkComboBox.setSelectedIndex(1);
-        levelComboBox.setSelectedIndex(1);
+        levelComboBox.setSelectedIndex(2);
         progressBar.setVisible(false);
         statusPanel.setVisible(true);
+		textarea_output.setVisible(false);
 
-		for (int index = 0; index <=30; index++){
-			serverTokens[index] = "0";
-			System.out.println(serverTokens[index]);
-		}
-
-		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainFrame.getContentPane().setPreferredSize(new Dimension(1000,600));
         mainFrame.setSize(1000, 620);
         mainFrame.setResizable(false);
@@ -147,10 +143,9 @@ public class EasyparkServerView extends FrameView {
                 }
             }
         });
-
-        
     }
     
+
     @Action
     public void showAboutBox() {
         if (aboutBox == null) {
@@ -201,8 +196,6 @@ public class EasyparkServerView extends FrameView {
         batteryGraphPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         adminTable = new javax.swing.JTable();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textarea_output = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -212,6 +205,8 @@ public class EasyparkServerView extends FrameView {
         statusAnimationLabel = new javax.swing.JLabel();
         progressBar = new javax.swing.JProgressBar();
         statusMessageLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textarea_output = new javax.swing.JTextArea();
 
         mainPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         mainPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -234,7 +229,7 @@ public class EasyparkServerView extends FrameView {
         carparkDetailsLabel.setName("carparkDetailsLabel"); // NOI18N
         carparkDetailsPanel.add(carparkDetailsLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
-        carparkComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select carpark...", "Fusionopolis", "Carpark X", "Carpark Y", "Carpark Z" }));
+        carparkComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select carpark...", "SysEng Pte Ltd", "Carpark X", "Carpark Y", "Carpark Z" }));
         carparkComboBox.setName("carparkComboBox"); // NOI18N
         carparkComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -483,16 +478,6 @@ public class EasyparkServerView extends FrameView {
         adminTable.getColumnModel().getColumn(5).setPreferredWidth(70);
         adminTable.getColumnModel().getColumn(5).setHeaderValue(resourceMap.getString("adminTable.columnModel.title3")); // NOI18N
 
-        jScrollPane1.setName("jScrollPane1"); // NOI18N
-
-        textarea_output.setColumns(15);
-        textarea_output.setEditable(false);
-        textarea_output.setRows(3);
-        textarea_output.setToolTipText(resourceMap.getString("textarea_output.toolTipText")); // NOI18N
-        textarea_output.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        textarea_output.setName("textarea_output"); // NOI18N
-        jScrollPane1.setViewportView(textarea_output);
-
         javax.swing.GroupLayout displayPanelLayout = new javax.swing.GroupLayout(displayPanel);
         displayPanel.setLayout(displayPanelLayout);
         displayPanelLayout.setHorizontalGroup(
@@ -505,17 +490,11 @@ public class EasyparkServerView extends FrameView {
                     .addComponent(carparkDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
                 .addGap(14, 14, 14)
                 .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(displayPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(displayTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(displayTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(displayPanelLayout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1058, Short.MAX_VALUE)
-                .addGap(6, 6, 6))
         );
         displayPanelLayout.setVerticalGroup(
             displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,9 +511,7 @@ public class EasyparkServerView extends FrameView {
                         .addComponent(displayTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(53, 53, 53))
         );
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -588,7 +565,20 @@ public class EasyparkServerView extends FrameView {
         statusPanel.add(progressBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(879, 0, 0, 30));
 
         statusMessageLabel.setName("statusMessageLabel"); // NOI18N
-        statusPanel.add(statusMessageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 450, 30));
+        statusPanel.add(statusMessageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 350, 30));
+
+        jScrollPane1.setName("jScrollPane1"); // NOI18N
+
+        textarea_output.setColumns(15);
+        textarea_output.setEditable(false);
+        textarea_output.setLineWrap(true);
+        textarea_output.setRows(1);
+        textarea_output.setToolTipText(resourceMap.getString("textarea_output.toolTipText")); // NOI18N
+        textarea_output.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        textarea_output.setName("textarea_output"); // NOI18N
+        jScrollPane1.setViewportView(textarea_output);
+
+        statusPanel.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(863, 0, 0, 29));
 
         setComponent(mainPanel);
         setMenuBar(menuBar);
@@ -606,7 +596,7 @@ public class EasyparkServerView extends FrameView {
         SerialForwarderIPAddress = tf_main_IP_addr.getText();
         SerialForwarderPort = Integer.parseInt(tf_main_IP_port.getText());
         getSocketConnection();
-        showGraph();
+        showChart();
 		chartGen.start();
     }//GEN-LAST:event_btn_startActionPerformed
 
@@ -657,7 +647,6 @@ public class EasyparkServerView extends FrameView {
     private javax.swing.JTextField tf_main_IP_port;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
-
     private final Timer messageTimer;
     private final Timer busyIconTimer;
     private final Icon idleIcon;
@@ -693,18 +682,14 @@ public class EasyparkServerView extends FrameView {
                         updateLotStatus(fromServer);
 						updateTable();
                         System.out.println("Received: " + fromServer);
-                        if (fromServer.equals("Bye!")) {
-                            EasyparkServerApp.getApplication().systemExit();
-                        }
-                        
                     } // end while
                 }
                 catch (IOException ex) {
                 }
             }
         };
-        Thread mythread = new Thread(mainLoop);
-        mythread.start();
+        updateThread = new Thread(mainLoop);
+        updateThread.start();
     }//end getConnection()
 
 
@@ -713,6 +698,7 @@ public class EasyparkServerView extends FrameView {
      */
     void closeConnection() {
         try {
+			updateThread.stop();
             socketOut.close();
             socketIn.close();
             clientSocket.close();
@@ -729,8 +715,9 @@ public class EasyparkServerView extends FrameView {
      */
     public void addStatusMessage(String newMessageLine){
         statusLogDisplayText += newMessageLine + "\n";
-        textarea_output.setText(statusLogDisplayText);
-        textarea_output.setCaretPosition(textarea_output.getDocument().getLength());
+        //textarea_output.setText(statusLogDisplayText);
+        //textarea_output.setCaretPosition(textarea_output.getDocument().getLength());
+
     }
 
 
@@ -739,11 +726,12 @@ public class EasyparkServerView extends FrameView {
      * per level and total, bitmap image, etc.
      */
     public void updateCarparkDetails(String carparkName, String carparkLevel){
-        if (carparkName.matches("Fusionopolis")){
-            carparkAddressTextArea.setText("1 Fusionopolis Way\n(S)138632");
+        if (carparkName.matches("SysEng Pte Ltd")){
+            carparkAddressTextArea.setText("2 Kaki Bukit Place\n"
+					+ "#05-00 Tritech Building\nSingapore 416180.");
             tf_main_IP_addr.setText("127.0.0.1");
             tf_main_IP_port.setText("4444");
-            if (carparkLevel.matches("All")){
+            if (carparkLevel.matches("Ground")){
                 freeLotsMax.setText("5");
                 freeLotsCurrent.setText(freeLotsMax.getText());
             }
@@ -794,7 +782,6 @@ public class EasyparkServerView extends FrameView {
             case 5: parkingLot1.setIcon(iconBatt100); break;
             default: break;
         }
-
         switch (categorizeBatt(10)){
             case 1: parkingLot2.setIcon(iconBatt20); break;
             case 2: parkingLot2.setIcon(iconBatt40); break;
@@ -803,7 +790,6 @@ public class EasyparkServerView extends FrameView {
             case 5: parkingLot2.setIcon(iconBatt100); break;
             default: break;
         }
-
         switch (categorizeBatt(16)){
             case 1: parkingLot3.setIcon(iconBatt20); break;
             case 2: parkingLot3.setIcon(iconBatt40); break;
@@ -812,7 +798,6 @@ public class EasyparkServerView extends FrameView {
             case 5: parkingLot3.setIcon(iconBatt100); break;
             default: break;
         }
-
         switch (categorizeBatt(22)){
             case 1: parkingLot4.setIcon(iconBatt20); break;
             case 2: parkingLot4.setIcon(iconBatt40); break;
@@ -821,7 +806,6 @@ public class EasyparkServerView extends FrameView {
             case 5: parkingLot4.setIcon(iconBatt100); break;
             default: break;
         }
-
         switch (categorizeBatt(28)){
             case 1: parkingLot5.setIcon(iconBatt20); break;
             case 2: parkingLot5.setIcon(iconBatt40); break;
@@ -830,6 +814,7 @@ public class EasyparkServerView extends FrameView {
             case 5: parkingLot5.setIcon(iconBatt100); break;
             default: break;
         }
+
         freeLotsCurrent.setText(Integer.toString(numFreeLots));
         freeLotsMax.setText(Integer.toString(numMaxLots));
     }
@@ -840,16 +825,13 @@ public class EasyparkServerView extends FrameView {
 		if ((batteryLevel <= 100) && (batteryLevel > 80)){
 			return 5;
 		}
-		else if((batteryLevel <= 80) && (batteryLevel > 60))
-		{
+		else if((batteryLevel <= 80) && (batteryLevel > 60)) {
 			return 4;
 		}
-		else if((batteryLevel <= 60) && (batteryLevel > 40))
-		{
+		else if((batteryLevel <= 60) && (batteryLevel > 40)) {
 			return 3;
 		}
-		else if((batteryLevel <= 40) && (batteryLevel > 20))
-		{
+		else if((batteryLevel <= 40) && (batteryLevel > 20)) {
 			return 2;
 		}
 		else{
@@ -857,24 +839,8 @@ public class EasyparkServerView extends FrameView {
  		}
 	}
 
+
 	public void updateTable(){
-		Object[][] data = {
-		{Integer.parseInt(serverTokens[1]), Integer.parseInt(serverTokens[2]),
-				 Integer.parseInt(serverTokens[3]),Integer.parseInt(serverTokens[4]),
-				 serverTokens[5],Integer.parseInt(serverTokens[6])},
-		{Integer.parseInt(serverTokens[7]), Integer.parseInt(serverTokens[8]),
-				 Integer.parseInt(serverTokens[9]),Integer.parseInt(serverTokens[10]),
-				 serverTokens[11],Integer.parseInt(serverTokens[12])},
-		{Integer.parseInt(serverTokens[13]), Integer.parseInt(serverTokens[14]),
-				 Integer.parseInt(serverTokens[15]),Integer.parseInt(serverTokens[16]),
-				 serverTokens[17],Integer.parseInt(serverTokens[18])},
-		{Integer.parseInt(serverTokens[19]), Integer.parseInt(serverTokens[20]),
-				 Integer.parseInt(serverTokens[21]),Integer.parseInt(serverTokens[22]),
-				 serverTokens[23],Integer.parseInt(serverTokens[24])},
-		{Integer.parseInt(serverTokens[25]), Integer.parseInt(serverTokens[26]),
-				 Integer.parseInt(serverTokens[27]),Integer.parseInt(serverTokens[28]),
-				 serverTokens[29],Integer.parseInt(serverTokens[30])},
-		};
 		int k = 1;
 		for (int j = 0; j<=4; j++){
 			for (int i = 0; i<= 5; i++){
@@ -882,31 +848,14 @@ public class EasyparkServerView extends FrameView {
 					k++;
 			}
 		}
-
-
-//		adminTable.setModel(new javax.swing.table.DefaultTableModel(
-//			data,
-//			tableColumnTitles) {
-//			Class[] types = new Class[]{
-//					java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
-//			};
-//		});
-//		adminTable.getColumnModel().getColumn(0).setPreferredWidth(150);
-//		adminTable.getColumnModel().getColumn(1).setPreferredWidth(220);
-//		adminTable.getColumnModel().getColumn(2).setPreferredWidth(350);
-//		adminTable.getColumnModel().getColumn(3).setPreferredWidth(250);
-//		adminTable.getColumnModel().getColumn(4).setPreferredWidth(225);
-//		adminTable.getColumnModel().getColumn(5).setPreferredWidth(70);
 	}
 
 
-    public void showGraph() {
-        //JFrame frame = new JFrame("Battery chart");
+    public void showChart(){
 		panel =  new nodeBatteryChart(30000);
         panel.setBounds(0, 0, 769, 410);
         panel.setVisible(true);
         batteryGraphPanel.add(panel);
 		chartGen = panel.new DataGenerator(1000);
     }
-
 }

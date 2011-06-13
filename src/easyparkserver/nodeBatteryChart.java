@@ -53,7 +53,6 @@ public class nodeBatteryChart extends JPanel{
         domain.setLabelFont(new Font("SansSerif", Font.PLAIN, 14));
         range.setLabelFont(new Font("SansSerif", Font.PLAIN, 14));
 
-
         XYItemRenderer renderer = new XYLineAndShapeRenderer(true, false);
         renderer.setSeriesPaint(0, Color.red);
         renderer.setSeriesPaint(1, Color.green);
@@ -119,6 +118,4 @@ public class nodeBatteryChart extends JPanel{
             }
         }
     }
-
-
 }

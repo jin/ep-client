@@ -42,9 +42,4 @@ public class EasyparkServerApp extends SingleFrameApplication {
     public static void main(String[] args) throws IOException {
         launch(EasyparkServerApp.class, args);
     }// end main
-
-    void systemExit() {
-        System.out.println("Application closing now...");
-        System.exit(1);
-    }//end closeConnection()
 }
