@@ -742,7 +742,7 @@ public class EasyparkServerView extends FrameView {
     public void updateLotStatus(String lotToken){
         serverTokens = lotToken.split(",");
         numFreeLots = 0;
-        numMaxLots = Integer.parseInt(serverTokens[serverTokens.length-6]);
+        numMaxLots = Integer.parseInt(serverTokens[serverTokens.length-7]);
         switch (Integer.parseInt(serverTokens[2])){
             case 0: parkingLot1.setBackground(Color.getHSBColor(146, 231, 192)); numFreeLots++; break;
             case 1: parkingLot1.setBackground(Color.getHSBColor(0,163,203)); break;
