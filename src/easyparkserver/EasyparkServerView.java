@@ -392,7 +392,7 @@ public class EasyparkServerView extends FrameView {
         parkingLot3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, resourceMap.getString("parkingLot3.border.title"), javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, resourceMap.getFont("parkingLot1.border.titleFont"))); // NOI18N
         parkingLot3.setName("parkingLot3"); // NOI18N
         parkingLot3.setOpaque(true);
-        parkingLot3.setBounds(500, 130, 110, 160);
+        parkingLot3.setBounds(350, 130, 110, 160);
         carparkLayeredPane.add(parkingLot3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         parkingLot4.setBackground(resourceMap.getColor("parkingLot4.background")); // NOI18N
@@ -403,7 +403,7 @@ public class EasyparkServerView extends FrameView {
         parkingLot4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, resourceMap.getString("parkingLot4.border.title"), javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, resourceMap.getFont("parkingLot1.border.titleFont"))); // NOI18N
         parkingLot4.setName("parkingLot4"); // NOI18N
         parkingLot4.setOpaque(true);
-        parkingLot4.setBounds(350, 130, 110, 160);
+        parkingLot4.setBounds(500, 130, 110, 160);
         carparkLayeredPane.add(parkingLot4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         parkingLot5.setBackground(resourceMap.getColor("parkingLot5.background")); // NOI18N

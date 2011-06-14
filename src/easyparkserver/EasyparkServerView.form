@@ -482,7 +482,7 @@
                         <Property name="verticalAlignment" type="int" value="3"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                            <TitledBorder justification="2" position="2" title="Lot 4">
+                            <TitledBorder justification="2" position="2" title="Lot 3">
                               <Property name="titleX" resourceKey="parkingLot3.border.title"/>
                               <Property name="font" resourceKey="parkingLot1.border.titleFont"/>
                             </TitledBorder>
@@ -493,7 +493,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="500" y="130" width="110" height="160" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="350" y="130" width="110" height="160" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -506,7 +506,7 @@
                         <Property name="verticalAlignment" type="int" value="3"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                            <TitledBorder justification="2" position="2" title="Lot 3">
+                            <TitledBorder justification="2" position="2" title="Lot 4">
                               <Property name="titleX" resourceKey="parkingLot4.border.title"/>
                               <Property name="font" resourceKey="parkingLot1.border.titleFont"/>
                             </TitledBorder>
@@ -517,7 +517,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="350" y="130" width="110" height="160" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="500" y="130" width="110" height="160" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
