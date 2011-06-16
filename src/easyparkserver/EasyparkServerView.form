@@ -52,23 +52,27 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="logoPanel" alignment="0" max="32767" attributes="1"/>
-                          <Component id="availLotsPanel" alignment="1" pref="247" max="32767" attributes="1"/>
-                          <Component id="carparkDetailsPanel" alignment="0" pref="247" max="32767" attributes="1"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="displayTabbedPane" min="-2" max="-2" attributes="0"/>
+                          <Component id="logoPanel" max="32767" attributes="1"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="availLotsPanel" pref="247" max="32767" attributes="1"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="1">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jScrollPane3" min="-2" pref="652" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="carparkDetailsPanel" max="32767" attributes="1"/>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="displayTabbedPane" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                              <Component id="jScrollPane3" min="-2" pref="683" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -80,15 +84,15 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="displayTabbedPane" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane3" min="-2" pref="123" max="-2" attributes="0"/>
+                              <Component id="jScrollPane3" min="-2" pref="118" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="1">
-                              <Component id="logoPanel" max="32767" attributes="0"/>
+                              <Component id="logoPanel" pref="110" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="availLotsPanel" min="-2" pref="127" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="carparkDetailsPanel" min="-2" pref="286" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="carparkDetailsPanel" min="-2" pref="292" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
@@ -114,68 +118,66 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="15" pref="15" max="15" attributes="0"/>
-                          <Component id="carparkComboBox" min="-2" pref="193" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="15" pref="15" max="15" attributes="0"/>
-                          <Component id="levelComboBox" min="-2" pref="193" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="15" pref="15" max="15" attributes="0"/>
-                          <Component id="carparkDetailsLabel" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="15" pref="15" max="15" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="199" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="35" pref="35" max="35" attributes="0"/>
-                          <Component id="label_main_IP_address" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="4" pref="4" max="4" attributes="0"/>
-                          <Component id="tf_main_IP_addr" min="-2" pref="84" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="75" pref="75" max="75" attributes="0"/>
-                          <Component id="label_main_IP_port" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="6" pref="6" max="6" attributes="0"/>
-                          <Component id="tf_main_IP_port" min="-2" pref="59" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="15" pref="15" max="15" attributes="0"/>
-                          <Component id="btn_start" min="-2" pref="100" max="-2" attributes="0"/>
-                          <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                          <Component id="btn_end" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace pref="15" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="carparkComboBox" alignment="0" min="-2" pref="193" max="-2" attributes="0"/>
+                              <Component id="levelComboBox" alignment="0" min="-2" pref="193" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                                  <Component id="tf_main_IP_port" min="-2" pref="59" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="carparkDetailsLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" alignment="0" min="-2" pref="199" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="btn_start" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="btn_end" min="-2" pref="100" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="1" attributes="0">
+                                              <Component id="label_main_IP_port" min="-2" max="-2" attributes="0"/>
+                                              <Component id="label_main_IP_address" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                                          <Component id="tf_main_IP_addr" min="-2" pref="84" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="4" pref="4" max="4" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
                           <Component id="carparkComboBox" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="2" pref="2" max="2" attributes="0"/>
                           <Component id="levelComboBox" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="12" pref="12" max="12" attributes="0"/>
+                          <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                           <Component id="carparkDetailsLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="2" pref="2" max="2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="60" max="-2" attributes="0"/>
-                          <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="label_main_IP_address" min="-2" max="-2" attributes="0"/>
-                              <Component id="tf_main_IP_addr" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="tf_main_IP_addr" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="label_main_IP_address" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="2" pref="2" max="2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="label_main_IP_port" min="-2" max="-2" attributes="0"/>
-                              <Component id="tf_main_IP_port" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="tf_main_IP_port" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="label_main_IP_port" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="2" pref="2" max="2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btn_start" min="-2" max="-2" attributes="0"/>
-                              <Component id="btn_end" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btn_end" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btn_start" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -393,14 +395,13 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="i2rLogo" min="-2" max="-2" attributes="0"/>
                               <Component id="sysengLogo" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="titleLabel" min="-2" pref="39" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -485,7 +486,7 @@
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="60" y="130" width="110" height="160" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="50" y="130" width="110" height="160" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -509,7 +510,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="210" y="130" width="110" height="160" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="200" y="130" width="110" height="160" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -533,7 +534,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="350" y="130" width="110" height="160" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="340" y="130" width="110" height="160" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -557,7 +558,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="500" y="130" width="110" height="160" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="490" y="130" width="110" height="160" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -581,7 +582,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="650" y="130" width="110" height="160" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="640" y="130" width="110" height="160" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -596,7 +597,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JLayeredPaneSupportLayout$JLayeredPaneConstraintsDescription">
-                          <JLayeredPaneConstraints x="0" y="0" width="780" height="410" layer="0" position="-1"/>
+                          <JLayeredPaneConstraints x="0" y="0" width="780" height="380" layer="0" position="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -609,7 +610,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="Node battery graph">
+                      <JTabbedPaneConstraints tabName="Node battery chart">
                         <Property name="tabTitle" type="java.lang.String" resourceKey="batteryGraphPanel.TabConstraints.tabTitle"/>
                       </JTabbedPaneConstraints>
                     </Constraint>
@@ -643,13 +644,14 @@
                 <Component class="javax.swing.JTable" name="adminTable">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="6" rowCount="5">
+                      <Table columnCount="7" rowCount="5">
                         <Column editable="true" title="Node ID" type="java.lang.Integer"/>
                         <Column editable="true" title="Lot Status" type="java.lang.Integer"/>
                         <Column editable="true" title="Raw sensor reading" type="java.lang.Integer"/>
                         <Column editable="true" title="Battery level" type="java.lang.Integer"/>
                         <Column editable="true" title="Last update" type="java.lang.String"/>
                         <Column editable="true" title="PDR" type="java.lang.Integer"/>
+                        <Column editable="true" title="Last changed" type="java.lang.String"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -659,28 +661,33 @@
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="220" resizable="false">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="false">
                           <Title resourceKey="adminTable.columnModel.title4"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="350" resizable="false">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="310" resizable="false">
                           <Title resourceKey="adminTable.columnModel.title0"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="250" resizable="false">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="false">
                           <Title resourceKey="adminTable.columnModel.title1"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="225" resizable="false">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="false">
                           <Title resourceKey="adminTable.columnModel.title2"/>
                           <Editor/>
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="70" resizable="false">
                           <Title resourceKey="adminTable.columnModel.title3"/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="200" resizable="false">
+                          <Title resourceKey="adminTable.columnModel.title6"/>
                           <Editor/>
                           <Renderer/>
                         </Column>

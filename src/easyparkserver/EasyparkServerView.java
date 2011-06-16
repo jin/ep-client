@@ -31,6 +31,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 
 
 /**
@@ -44,12 +47,12 @@ public class EasyparkServerView extends FrameView {
     String fromServer, fromUser;
     String statusLogDisplayText = "";
     Integer numFreeLots, numMaxLots;
+	Integer lot1Cur = 2, lot2Cur = 2, lot3Cur = 2, lot4Cur = 2, lot5Cur = 2;
 
     nodeBatteryChart panel;
 	nodeBatteryChart.DataGenerator chartGen;
 
     public static String[] serverTokens = new String[32];
-
 
 	String[] tableColumnTitles = {"Node ID", "Lot Status", 
 				"Raw sensor reading", "Battery level", "Last update", "PDR"};
@@ -68,6 +71,8 @@ public class EasyparkServerView extends FrameView {
     Socket clientSocket = null;
     PrintWriter socketOut = null;
     BufferedReader socketIn = null;
+
+	SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 
 	Thread updateThread;
 
@@ -292,57 +297,54 @@ public class EasyparkServerView extends FrameView {
         carparkDetailsPanel.setLayout(carparkDetailsPanelLayout);
         carparkDetailsPanelLayout.setHorizontalGroup(
             carparkDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(carparkDetailsPanelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(carparkComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(carparkDetailsPanelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(levelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(carparkDetailsPanelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(carparkDetailsLabel))
-            .addGroup(carparkDetailsPanelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(carparkDetailsPanelLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(label_main_IP_address)
-                .addGap(4, 4, 4)
-                .addComponent(tf_main_IP_addr, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(carparkDetailsPanelLayout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(label_main_IP_port)
-                .addGap(6, 6, 6)
-                .addComponent(tf_main_IP_port, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(carparkDetailsPanelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(btn_start, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(btn_end, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, carparkDetailsPanelLayout.createSequentialGroup()
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addGroup(carparkDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(carparkComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(levelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(carparkDetailsPanelLayout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addComponent(tf_main_IP_port, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(carparkDetailsLabel)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(carparkDetailsPanelLayout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(carparkDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(carparkDetailsPanelLayout.createSequentialGroup()
+                                .addComponent(btn_start, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_end, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(carparkDetailsPanelLayout.createSequentialGroup()
+                                .addGroup(carparkDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(label_main_IP_port)
+                                    .addComponent(label_main_IP_address))
+                                .addGap(5, 5, 5)
+                                .addComponent(tf_main_IP_addr, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         carparkDetailsPanelLayout.setVerticalGroup(
             carparkDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(carparkDetailsPanelLayout.createSequentialGroup()
-                .addGap(4, 4, 4)
                 .addComponent(carparkComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(levelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGap(8, 8, 8)
                 .addComponent(carparkDetailsLabel)
-                .addGap(2, 2, 2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addGroup(carparkDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_main_IP_address)
-                    .addComponent(tf_main_IP_addr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
-                .addGroup(carparkDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label_main_IP_port)
-                    .addComponent(tf_main_IP_port, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
-                .addGroup(carparkDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_start)
-                    .addComponent(btn_end)))
+                .addGroup(carparkDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_main_IP_addr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_main_IP_address))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(carparkDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tf_main_IP_port, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label_main_IP_port))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(carparkDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_end)
+                    .addComponent(btn_start))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         availLotsPanel.setBackground(resourceMap.getColor("availLotsPanel.background")); // NOI18N
@@ -403,13 +405,12 @@ public class EasyparkServerView extends FrameView {
         logoPanelLayout.setVerticalGroup(
             logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(logoPanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(logoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(i2rLogo)
                     .addComponent(sysengLogo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         displayTabbedPane.setBackground(resourceMap.getColor("displayTabbedPane.background")); // NOI18N
@@ -426,7 +427,7 @@ public class EasyparkServerView extends FrameView {
         parkingLot1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, resourceMap.getString("parkingLot1.border.title"), javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, resourceMap.getFont("parkingLot1.border.titleFont"))); // NOI18N
         parkingLot1.setName("parkingLot1"); // NOI18N
         parkingLot1.setOpaque(true);
-        parkingLot1.setBounds(60, 130, 110, 160);
+        parkingLot1.setBounds(50, 130, 110, 160);
         carparkLayeredPane.add(parkingLot1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         parkingLot2.setBackground(resourceMap.getColor("parkingLot2.background")); // NOI18N
@@ -437,7 +438,7 @@ public class EasyparkServerView extends FrameView {
         parkingLot2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, resourceMap.getString("parkingLot2.border.title"), javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, resourceMap.getFont("parkingLot1.border.titleFont"))); // NOI18N
         parkingLot2.setName("parkingLot2"); // NOI18N
         parkingLot2.setOpaque(true);
-        parkingLot2.setBounds(210, 130, 110, 160);
+        parkingLot2.setBounds(200, 130, 110, 160);
         carparkLayeredPane.add(parkingLot2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         parkingLot3.setBackground(resourceMap.getColor("parkingLot3.background")); // NOI18N
@@ -448,7 +449,7 @@ public class EasyparkServerView extends FrameView {
         parkingLot3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, resourceMap.getString("parkingLot3.border.title"), javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, resourceMap.getFont("parkingLot1.border.titleFont"))); // NOI18N
         parkingLot3.setName("parkingLot3"); // NOI18N
         parkingLot3.setOpaque(true);
-        parkingLot3.setBounds(350, 130, 110, 160);
+        parkingLot3.setBounds(340, 130, 110, 160);
         carparkLayeredPane.add(parkingLot3, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         parkingLot4.setBackground(resourceMap.getColor("parkingLot4.background")); // NOI18N
@@ -459,7 +460,7 @@ public class EasyparkServerView extends FrameView {
         parkingLot4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, resourceMap.getString("parkingLot4.border.title"), javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, resourceMap.getFont("parkingLot1.border.titleFont"))); // NOI18N
         parkingLot4.setName("parkingLot4"); // NOI18N
         parkingLot4.setOpaque(true);
-        parkingLot4.setBounds(500, 130, 110, 160);
+        parkingLot4.setBounds(490, 130, 110, 160);
         carparkLayeredPane.add(parkingLot4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         parkingLot5.setBackground(resourceMap.getColor("parkingLot5.background")); // NOI18N
@@ -470,14 +471,14 @@ public class EasyparkServerView extends FrameView {
         parkingLot5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, resourceMap.getString("parkingLot5.border.title"), javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, resourceMap.getFont("parkingLot1.border.titleFont"))); // NOI18N
         parkingLot5.setName("parkingLot5"); // NOI18N
         parkingLot5.setOpaque(true);
-        parkingLot5.setBounds(650, 130, 110, 160);
+        parkingLot5.setBounds(640, 130, 110, 160);
         carparkLayeredPane.add(parkingLot5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         carparkBitMapLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         carparkBitMapLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/easyparkserver/resources/sysengcropped.png"))); // NOI18N
         carparkBitMapLabel.setText(resourceMap.getString("carparkBitMapLabel.text")); // NOI18N
         carparkBitMapLabel.setName("carparkBitMapLabel"); // NOI18N
-        carparkBitMapLabel.setBounds(0, 0, 780, 410);
+        carparkBitMapLabel.setBounds(0, 0, 780, 380);
         carparkLayeredPane.add(carparkBitMapLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         displayTabbedPane.addTab(resourceMap.getString("carparkLayeredPane.TabConstraints.tabTitle"), carparkLayeredPane); // NOI18N
@@ -502,18 +503,18 @@ public class EasyparkServerView extends FrameView {
 
         adminTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Node ID", "Lot Status", "Raw sensor reading", "Battery level", "Last update", "PDR"
+                "Node ID", "Lot Status", "Raw sensor reading", "Battery level", "Last update", "PDR", "Last changed"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -526,20 +527,23 @@ public class EasyparkServerView extends FrameView {
         adminTable.getColumnModel().getColumn(0).setPreferredWidth(150);
         adminTable.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("adminTable.columnModel.title5")); // NOI18N
         adminTable.getColumnModel().getColumn(1).setResizable(false);
-        adminTable.getColumnModel().getColumn(1).setPreferredWidth(220);
+        adminTable.getColumnModel().getColumn(1).setPreferredWidth(200);
         adminTable.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("adminTable.columnModel.title4")); // NOI18N
         adminTable.getColumnModel().getColumn(2).setResizable(false);
-        adminTable.getColumnModel().getColumn(2).setPreferredWidth(350);
+        adminTable.getColumnModel().getColumn(2).setPreferredWidth(310);
         adminTable.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("adminTable.columnModel.title0")); // NOI18N
         adminTable.getColumnModel().getColumn(3).setResizable(false);
-        adminTable.getColumnModel().getColumn(3).setPreferredWidth(250);
+        adminTable.getColumnModel().getColumn(3).setPreferredWidth(200);
         adminTable.getColumnModel().getColumn(3).setHeaderValue(resourceMap.getString("adminTable.columnModel.title1")); // NOI18N
         adminTable.getColumnModel().getColumn(4).setResizable(false);
-        adminTable.getColumnModel().getColumn(4).setPreferredWidth(225);
+        adminTable.getColumnModel().getColumn(4).setPreferredWidth(200);
         adminTable.getColumnModel().getColumn(4).setHeaderValue(resourceMap.getString("adminTable.columnModel.title2")); // NOI18N
         adminTable.getColumnModel().getColumn(5).setResizable(false);
         adminTable.getColumnModel().getColumn(5).setPreferredWidth(70);
         adminTable.getColumnModel().getColumn(5).setHeaderValue(resourceMap.getString("adminTable.columnModel.title3")); // NOI18N
+        adminTable.getColumnModel().getColumn(6).setResizable(false);
+        adminTable.getColumnModel().getColumn(6).setPreferredWidth(200);
+        adminTable.getColumnModel().getColumn(6).setHeaderValue(resourceMap.getString("adminTable.columnModel.title6")); // NOI18N
 
         javax.swing.GroupLayout displayPanelLayout = new javax.swing.GroupLayout(displayPanel);
         displayPanel.setLayout(displayPanelLayout);
@@ -549,18 +553,20 @@ public class EasyparkServerView extends FrameView {
                 .addContainerGap()
                 .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(logoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(availLotsPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
-                    .addComponent(carparkDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(displayPanelLayout.createSequentialGroup()
+                        .addComponent(availLotsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(displayPanelLayout.createSequentialGroup()
+                        .addComponent(carparkDetailsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(displayPanelLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(displayTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78))))
+                        .addComponent(displayTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(displayPanelLayout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         displayPanelLayout.setVerticalGroup(
             displayPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -570,14 +576,14 @@ public class EasyparkServerView extends FrameView {
                     .addGroup(displayPanelLayout.createSequentialGroup()
                         .addComponent(displayTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayPanelLayout.createSequentialGroup()
-                        .addComponent(logoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(availLotsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(carparkDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
+                        .addComponent(carparkDetailsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)))
                 .addGap(47, 47, 47))
         );
 
@@ -796,7 +802,7 @@ public class EasyparkServerView extends FrameView {
     public void updateCarparkDetails(String carparkName, String carparkLevel){
         if (carparkName.matches("SysEng Pte Ltd")){
             carparkAddressTextArea.setText("2 Kaki Bukit Place\n"
-					+ "#05-00 Tritech Building\nSingapore 416180.");
+					+ "#05-00 Tritech Building\nSingapore 416180");
             tf_main_IP_addr.setText("127.0.0.1");
             tf_main_IP_port.setText("4444");
             if (carparkLevel.matches("Ground")){
@@ -809,38 +815,119 @@ public class EasyparkServerView extends FrameView {
 
     public void updateLotStatus(String lotToken){
         serverTokens = lotToken.split(",");
+		String curTime = sdf.format(Calendar.getInstance().getTime());
         numFreeLots = 0;
         numMaxLots = Integer.parseInt(serverTokens[serverTokens.length-7]);
-        switch (Integer.parseInt(serverTokens[2])){
-            case 0: parkingLot1.setBackground(Color.getHSBColor(146, 231, 192)); numFreeLots++; break;
-            case 1: parkingLot1.setBackground(Color.getHSBColor(0,163,203)); break;
-            case 2: parkingLot1.setBackground(Color.gray.brighter()); break;
-            default: break;
-        }
-        switch (Integer.parseInt(serverTokens[8])){
-            case 0: parkingLot2.setBackground(Color.getHSBColor(146,231,192)); numFreeLots++; break;
-            case 1: parkingLot2.setBackground(Color.getHSBColor(0,163,203)); break;
-            case 2: parkingLot2.setBackground(Color.gray.brighter()); break;
-            default: break;
-        }
-        switch (Integer.parseInt(serverTokens[14])){
-            case 0: parkingLot3.setBackground(Color.getHSBColor(146,231,192)); numFreeLots++; break;
-            case 1: parkingLot3.setBackground(Color.getHSBColor(0,163,203));  break;
-            case 2: parkingLot3.setBackground(Color.gray.brighter()); break;
-            default: break;
-        }
-        switch (Integer.parseInt(serverTokens[20])){
-            case 0: parkingLot4.setBackground(Color.getHSBColor(146,231,192)); numFreeLots++; break;
-            case 1: parkingLot4.setBackground(Color.getHSBColor(0,163,203)); break;
-            case 2: parkingLot4.setBackground(Color.gray.brighter()); break;
-            default: break;
-        }
-        switch (Integer.parseInt(serverTokens[26])){
-            case 0: parkingLot5.setBackground(Color.getHSBColor(146,231,192)); numFreeLots++; break;
-            case 1: parkingLot5.setBackground(Color.getHSBColor(0,163,203)); break;
-            case 2: parkingLot5.setBackground(Color.gray.brighter()); break;
-            default: break;
-        }
+        switch (Integer.parseInt(serverTokens[2])) {
+					case 0: parkingLot1.setBackground(Color.getHSBColor(146, 231, 192));
+							numFreeLots++;
+							if (lot1Cur != 0) {
+									adminTable.getModel().setValueAt(curTime, 0, 6);
+									lot1Cur = 0;
+							}
+							break;
+					case 1: parkingLot1.setBackground(Color.getHSBColor(0, 163, 203));
+							if (lot1Cur != 1) {
+									adminTable.getModel().setValueAt(curTime, 0, 6);
+									lot1Cur = 1;
+							}
+							break;
+					case 2: parkingLot1.setBackground(Color.gray.brighter());
+							if (lot1Cur != 2) {
+									adminTable.getModel().setValueAt(curTime, 0, 6);
+									lot1Cur = 2;
+							}
+							break;
+					default: break;
+			}
+			switch (Integer.parseInt(serverTokens[8])) {
+					case 0: parkingLot2.setBackground(Color.getHSBColor(146, 231, 192));
+							numFreeLots++;
+							if (lot2Cur != 0) {
+									adminTable.getModel().setValueAt(curTime, 1, 6);
+									lot2Cur = 0;
+							}
+							break;
+					case 1: parkingLot2.setBackground(Color.getHSBColor(0, 163, 203));
+							if (lot2Cur != 1) {
+									adminTable.getModel().setValueAt(curTime, 1, 6);
+									lot2Cur = 1;
+							}
+							break;
+					case 2: parkingLot2.setBackground(Color.gray.brighter());
+							if (lot2Cur != 2) {
+									adminTable.getModel().setValueAt(curTime, 1, 6);
+									lot2Cur = 2;
+							}
+							break;
+					default: break;
+			}
+        switch (Integer.parseInt(serverTokens[14])) {
+					case 0: parkingLot3.setBackground(Color.getHSBColor(146, 231, 192));
+							numFreeLots++;
+							if (lot3Cur != 0) {
+									adminTable.getModel().setValueAt(curTime, 2, 6);
+									lot3Cur = 0;
+							}
+							break;
+					case 1: parkingLot3.setBackground(Color.getHSBColor(0, 163, 203));
+							if (lot3Cur != 1) {
+									adminTable.getModel().setValueAt(curTime, 2, 6);
+									lot3Cur = 1;
+							}
+							break;
+					case 2: parkingLot3.setBackground(Color.gray.brighter());
+							if (lot3Cur != 2) {
+									adminTable.getModel().setValueAt(curTime, 2, 6);
+									lot3Cur = 2;
+							}
+							break;
+					default: break;
+			}
+			switch (Integer.parseInt(serverTokens[20])) {
+					case 0: parkingLot4.setBackground(Color.getHSBColor(146, 231, 192));
+							numFreeLots++;
+							if (lot4Cur != 0) {
+									adminTable.getModel().setValueAt(curTime, 3, 6);
+									lot4Cur = 0;
+							}
+							break;
+					case 1: parkingLot4.setBackground(Color.getHSBColor(0, 163, 203));
+							if (lot4Cur != 1) {
+									adminTable.getModel().setValueAt(curTime, 3, 6);
+									lot4Cur = 1;
+							}
+							break;
+					case 2: parkingLot4.setBackground(Color.gray.brighter());
+							if (lot4Cur != 2) {
+									adminTable.getModel().setValueAt(curTime, 3, 6);
+									lot4Cur = 2;
+							}
+							break;
+					default: break;
+			}
+			switch (Integer.parseInt(serverTokens[26])) {
+					case 0: parkingLot5.setBackground(Color.getHSBColor(146, 231, 192));
+							numFreeLots++;
+							if (lot5Cur != 0) {
+									adminTable.getModel().setValueAt(curTime, 4, 6);
+									lot5Cur = 0;
+							}
+							break;
+					case 1: parkingLot5.setBackground(Color.getHSBColor(0, 163, 203));
+							if (lot5Cur != 1) {
+									adminTable.getModel().setValueAt(curTime, 4, 6);
+									lot5Cur = 1;
+							}
+							break;
+					case 2: parkingLot5.setBackground(Color.gray.brighter());
+							if (lot5Cur != 2) {
+									adminTable.getModel().setValueAt(curTime, 4, 6);
+									lot5Cur = 2;
+							}
+							break;
+					default: break;
+			}
 
         switch (categorizeBatt(4)){
             case 1: parkingLot1.setIcon(iconBatt20); break;

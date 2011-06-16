@@ -70,7 +70,7 @@ public class nodeBatteryChart extends JPanel{
 
         range.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
 
-        JFreeChart chart = new JFreeChart("Current node battery levels",
+        JFreeChart chart = new JFreeChart("Energy levels",
                 new Font("SansSerif", Font.BOLD, 24), plot, true);
         chart.setBackgroundPaint(Color.white);
         ChartPanel chartPanel = new ChartPanel(chart);
