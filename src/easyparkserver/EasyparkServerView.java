@@ -764,7 +764,7 @@ public class EasyparkServerView extends FrameView {
         };
         updateThread = new Thread(mainLoop);
         updateThread.start();
-    }//end getConnection()
+    }
 
 
     /**
@@ -781,7 +781,7 @@ public class EasyparkServerView extends FrameView {
             System.err.println("Problem closing sockets!");
             statusMessageLabel.setText("Problem closing sockets!");
         }
-    }//end closeConnection()
+    }
 
 
     /**
@@ -819,115 +819,115 @@ public class EasyparkServerView extends FrameView {
         numFreeLots = 0;
         numMaxLots = Integer.parseInt(serverTokens[serverTokens.length-7]);
         switch (Integer.parseInt(serverTokens[2])) {
-					case 0: parkingLot1.setBackground(Color.getHSBColor(146, 231, 192));
-							numFreeLots++;
-							if (lot1Cur != 0) {
-									adminTable.getModel().setValueAt(curTime, 0, 6);
-									lot1Cur = 0;
-							}
-							break;
-					case 1: parkingLot1.setBackground(Color.getHSBColor(0, 163, 203));
-							if (lot1Cur != 1) {
-									adminTable.getModel().setValueAt(curTime, 0, 6);
-									lot1Cur = 1;
-							}
-							break;
-					case 2: parkingLot1.setBackground(Color.gray.brighter());
-							if (lot1Cur != 2) {
-									adminTable.getModel().setValueAt(curTime, 0, 6);
-									lot1Cur = 2;
-							}
-							break;
-					default: break;
-			}
-			switch (Integer.parseInt(serverTokens[8])) {
-					case 0: parkingLot2.setBackground(Color.getHSBColor(146, 231, 192));
-							numFreeLots++;
-							if (lot2Cur != 0) {
-									adminTable.getModel().setValueAt(curTime, 1, 6);
-									lot2Cur = 0;
-							}
-							break;
-					case 1: parkingLot2.setBackground(Color.getHSBColor(0, 163, 203));
-							if (lot2Cur != 1) {
-									adminTable.getModel().setValueAt(curTime, 1, 6);
-									lot2Cur = 1;
-							}
-							break;
-					case 2: parkingLot2.setBackground(Color.gray.brighter());
-							if (lot2Cur != 2) {
-									adminTable.getModel().setValueAt(curTime, 1, 6);
-									lot2Cur = 2;
-							}
-							break;
-					default: break;
-			}
+			case 0: parkingLot1.setBackground(Color.getHSBColor(146, 231, 192));
+					numFreeLots++;
+					if (lot1Cur != 0) {
+						adminTable.getModel().setValueAt(curTime, 0, 6);
+						lot1Cur = 0;
+					}
+					break;
+			case 1: parkingLot1.setBackground(Color.getHSBColor(0, 163, 203));
+					if (lot1Cur != 1) {
+						adminTable.getModel().setValueAt(curTime, 0, 6);
+						lot1Cur = 1;
+					}
+					break;
+			case 2: parkingLot1.setBackground(Color.gray.brighter());
+					if (lot1Cur != 2) {
+						adminTable.getModel().setValueAt(curTime, 0, 6);
+						lot1Cur = 2;
+					}
+					break;
+			default: break;
+		}
+		switch (Integer.parseInt(serverTokens[8])) {
+			case 0: parkingLot2.setBackground(Color.getHSBColor(146, 231, 192));
+					numFreeLots++;
+					if (lot2Cur != 0) {
+						adminTable.getModel().setValueAt(curTime, 1, 6);
+						lot2Cur = 0;
+					}
+					break;
+			case 1: parkingLot2.setBackground(Color.getHSBColor(0, 163, 203));
+					if (lot2Cur != 1) {
+						adminTable.getModel().setValueAt(curTime, 1, 6);
+						lot2Cur = 1;
+					}
+					break;
+			case 2: parkingLot2.setBackground(Color.gray.brighter());
+					if (lot2Cur != 2) {
+						adminTable.getModel().setValueAt(curTime, 1, 6);
+						lot2Cur = 2;
+					}
+					break;
+			default: break;
+		}
         switch (Integer.parseInt(serverTokens[14])) {
-					case 0: parkingLot3.setBackground(Color.getHSBColor(146, 231, 192));
-							numFreeLots++;
-							if (lot3Cur != 0) {
-									adminTable.getModel().setValueAt(curTime, 2, 6);
-									lot3Cur = 0;
-							}
-							break;
-					case 1: parkingLot3.setBackground(Color.getHSBColor(0, 163, 203));
-							if (lot3Cur != 1) {
-									adminTable.getModel().setValueAt(curTime, 2, 6);
-									lot3Cur = 1;
-							}
-							break;
-					case 2: parkingLot3.setBackground(Color.gray.brighter());
-							if (lot3Cur != 2) {
-									adminTable.getModel().setValueAt(curTime, 2, 6);
-									lot3Cur = 2;
-							}
-							break;
-					default: break;
-			}
-			switch (Integer.parseInt(serverTokens[20])) {
-					case 0: parkingLot4.setBackground(Color.getHSBColor(146, 231, 192));
-							numFreeLots++;
-							if (lot4Cur != 0) {
-									adminTable.getModel().setValueAt(curTime, 3, 6);
-									lot4Cur = 0;
-							}
-							break;
-					case 1: parkingLot4.setBackground(Color.getHSBColor(0, 163, 203));
-							if (lot4Cur != 1) {
-									adminTable.getModel().setValueAt(curTime, 3, 6);
-									lot4Cur = 1;
-							}
-							break;
-					case 2: parkingLot4.setBackground(Color.gray.brighter());
-							if (lot4Cur != 2) {
-									adminTable.getModel().setValueAt(curTime, 3, 6);
-									lot4Cur = 2;
-							}
-							break;
-					default: break;
-			}
-			switch (Integer.parseInt(serverTokens[26])) {
-					case 0: parkingLot5.setBackground(Color.getHSBColor(146, 231, 192));
-							numFreeLots++;
-							if (lot5Cur != 0) {
-									adminTable.getModel().setValueAt(curTime, 4, 6);
-									lot5Cur = 0;
-							}
-							break;
-					case 1: parkingLot5.setBackground(Color.getHSBColor(0, 163, 203));
-							if (lot5Cur != 1) {
-									adminTable.getModel().setValueAt(curTime, 4, 6);
-									lot5Cur = 1;
-							}
-							break;
-					case 2: parkingLot5.setBackground(Color.gray.brighter());
-							if (lot5Cur != 2) {
-									adminTable.getModel().setValueAt(curTime, 4, 6);
-									lot5Cur = 2;
-							}
-							break;
-					default: break;
-			}
+			case 0: parkingLot3.setBackground(Color.getHSBColor(146, 231, 192));
+					numFreeLots++;
+					if (lot3Cur != 0) {
+						adminTable.getModel().setValueAt(curTime, 2, 6);
+						lot3Cur = 0;
+					}
+					break;
+			case 1: parkingLot3.setBackground(Color.getHSBColor(0, 163, 203));
+					if (lot3Cur != 1) {
+						adminTable.getModel().setValueAt(curTime, 2, 6);
+						lot3Cur = 1;
+					}
+					break;
+			case 2: parkingLot3.setBackground(Color.gray.brighter());
+					if (lot3Cur != 2) {
+						adminTable.getModel().setValueAt(curTime, 2, 6);
+						lot3Cur = 2;
+					}
+					break;
+			default: break;
+		}
+		switch (Integer.parseInt(serverTokens[20])) {
+			case 0: parkingLot4.setBackground(Color.getHSBColor(146, 231, 192));
+					numFreeLots++;
+					if (lot4Cur != 0) {
+						adminTable.getModel().setValueAt(curTime, 3, 6);
+						lot4Cur = 0;
+					}
+					break;
+			case 1: parkingLot4.setBackground(Color.getHSBColor(0, 163, 203));
+					if (lot4Cur != 1) {
+						adminTable.getModel().setValueAt(curTime, 3, 6);
+						lot4Cur = 1;
+					}
+					break;
+			case 2: parkingLot4.setBackground(Color.gray.brighter());
+					if (lot4Cur != 2) {
+						adminTable.getModel().setValueAt(curTime, 3, 6);
+						lot4Cur = 2;
+					}
+					break;
+			default: break;
+		}
+		switch (Integer.parseInt(serverTokens[26])) {
+			case 0: parkingLot5.setBackground(Color.getHSBColor(146, 231, 192));
+					numFreeLots++;
+					if (lot5Cur != 0) {
+						adminTable.getModel().setValueAt(curTime, 4, 6);
+						lot5Cur = 0;
+					}
+					break;
+			case 1: parkingLot5.setBackground(Color.getHSBColor(0, 163, 203));
+					if (lot5Cur != 1) {
+						adminTable.getModel().setValueAt(curTime, 4, 6);
+						lot5Cur = 1;
+					}
+					break;
+			case 2: parkingLot5.setBackground(Color.gray.brighter());
+					if (lot5Cur != 2) {
+						adminTable.getModel().setValueAt(curTime, 4, 6);
+						lot5Cur = 2;
+					}
+					break;
+			default: break;
+		}
 
         switch (categorizeBatt(4)){
             case 1: parkingLot1.setIcon(iconBatt20); break;
@@ -978,20 +978,14 @@ public class EasyparkServerView extends FrameView {
 	public int categorizeBatt(int i){
 		int batteryLevel = Integer.parseInt(serverTokens[i]);
 		if ((batteryLevel <= 100) && (batteryLevel > 80)){
-			return 5;
-		}
+			return 5; }
 		else if((batteryLevel <= 80) && (batteryLevel > 60)) {
-			return 4;
-		}
+			return 4; }
 		else if((batteryLevel <= 60) && (batteryLevel > 40)) {
-			return 3;
-		}
+			return 3; }
 		else if((batteryLevel <= 40) && (batteryLevel > 20)) {
-			return 2;
-		}
-		else{
-			return 1;
- 		}
+			return 2; }
+		else{ return 1; }
 	}
 
 
