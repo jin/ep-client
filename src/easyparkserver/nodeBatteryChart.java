@@ -82,11 +82,11 @@ public class nodeBatteryChart extends JPanel{
 
     private void updateTimeSeries(int node, int batt){
         switch(node){
-            case 1: this.battNode1.add(new Second(), batt); break;
-            case 2: this.battNode2.add(new Second(), batt); break;
-            case 3: this.battNode3.add(new Second(), batt); break;
-            case 4: this.battNode4.add(new Second(), batt); break;
-            case 5: this.battNode5.add(new Second(), batt); break;
+            case 1: this.battNode1.addOrUpdate(new Second(), batt); break;
+            case 2: this.battNode2.addOrUpdate(new Second(), batt); break;
+            case 3: this.battNode3.addOrUpdate(new Second(), batt); break;
+            case 4: this.battNode4.addOrUpdate(new Second(), batt); break;
+            case 5: this.battNode5.addOrUpdate(new Second(), batt); break;
             default: break;
         }
     }
